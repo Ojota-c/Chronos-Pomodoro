@@ -1,16 +1,31 @@
+import { Container } from './components/Container';
+import { Logo } from './components/Logo';
+
+import './styles/global.css';
+import './styles/theme.css';
+import { Menu } from './components/Menu';
+import { CountDown } from './components/CountDown';
+
 export function App() {
   return (
     <>
-      <div className='container'>
-        <div className='content'>
-          <section>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque,
-            maxime. Similique, nisi natus ipsam facere odio aliquam adipisci,
-            deserunt hic distinctio quam error quidem rerum eveniet autem non
-            dignissimos asperiores?
-          </section>
-        </div>
-      </div>
+      <Container>
+        <Logo />
+      </Container>
+
+      <Container>
+        <Menu />
+      </Container>
+
+      <Container>
+        <CountDown />
+      </Container>
+
+      <Container>
+        <form className='form' action=''>
+          <div className='formRow'></div>
+        </form>
+      </Container>
     </>
   );
 }
