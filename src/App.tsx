@@ -23,7 +23,9 @@ export function App() {
 
       <Container>
         <form className='form' action=''>
-          <div className='formRow'></div>
+          <div className='formRow'>
+            <label htmlFor=''>task</label>
+          </div>
         </form>
       </Container>
     </>
