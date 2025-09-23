@@ -1,18 +1,34 @@
+//* Imports
 import { Container } from './components/Container';
 import { Logo } from './components/Logo';
-
-import './styles/global.css';
-import './styles/theme.css';
 import { Menu } from './components/Menu';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
 import { Cycles } from './components/Cycles';
 import { DefaultButton } from './components/DefaultButton';
 import { PlayCircleIcon } from 'lucide-react';
+import { Footer } from './components/Footer';
+import { Heading } from './components/Heading';
+
+//* Styles
+import './styles/global.css';
+import './styles/theme.css';
+import { useState } from 'react';
 
 export function App() {
+  const [numero, setNumero] = useState(0);
+
+  function handleClick() {
+    setNumero(numero + 1);
+  }
+
   return (
     <>
+      <Heading>
+        Número: <span id='numero'>{numero}</span>
+      </Heading>
+      <button onClick={handleClick}>Aumenta o Número</button>
+
       <Container>
         <Logo />
       </Container>
@@ -29,7 +45,7 @@ export function App() {
         <form className='form' action=''>
           <div className='formRow'>
             <DefaultInput
-              labelText='task'
+              labelText={numero.toString()}
               id='meuInput'
               type='text'
               placeholder='Digite sua tarefa'
@@ -50,7 +66,9 @@ export function App() {
         </form>
       </Container>
 
-      <Container>kiss</Container>
+      <Container>
+        <Footer />
+      </Container>
     </>
   );
 }

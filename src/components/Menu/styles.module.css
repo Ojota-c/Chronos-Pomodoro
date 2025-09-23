@@ -17,7 +17,9 @@
   padding: 1.5rem;
 }
 .menuLink:hover {
-  filter: brightness(70%);
+  box-shadow: 0 6px 15px var(--primary);
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .menuLink svg {

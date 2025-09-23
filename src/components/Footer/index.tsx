@@ -1,7 +1,13 @@
-export function Heading() {
+import styles from './styles.module.css';
+
+export function Footer() {
   return (
-    <footer>
-      <a href=''>Entenda como funciona a tecnica Pomodoro</a>
+    <footer className={styles.footer}>
+      <a href=''>Entenda como funciona a técnica Pomodoro</a>
+      <a href=''>
+        Chronos Pomodoro &copy; {new Date().getFullYear()} - Feito com 💚 por
+        Jota C
+      </a>
     </footer>
   );
 }
