@@ -7,7 +7,7 @@ type MainTamplateProps = {
     children: React.ReactNode;
 }
 
-export function MainTamplate({ children }: MainTamplateProps) {
+export function MainTemplate({ children }: MainTamplateProps) {
   return (
     <>
       <Container>
