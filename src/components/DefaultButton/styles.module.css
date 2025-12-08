@@ -27,7 +27,7 @@
   height: 3.2rem;
 }
 
-.button:hover {
+.button:hover{
   box-shadow: 0 3px 15px var(--primary);
   transform: scale(1.05);
   cursor: pointer;
