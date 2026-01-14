@@ -10,12 +10,14 @@ import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
 import { useEffect, useState } from 'react';
 import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
-import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
 import { RouterLink } from '../../components/RouterLink';
 import { GenericHtml } from '../../components/GenericHtml';
+import { showMessage } from '../../adapters/showMessage';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
+  const [confirmClearHistory, setConfirmClearHistory] = useState(false);
   const hasTasks = state.tasks.length > 0;
 
   const [sortTaskOptions, setSortTaskOptions] = useState<SortTasksOptions>(
@@ -39,6 +41,20 @@ export function History() {
     }));
   }, [state.tasks]);
 
+  useEffect(() => {
+    if (!confirmClearHistory) return;
+
+    setConfirmClearHistory(false);
+
+    dispatch({ type: TaskActionTypes.RESET_STATE });
+  }, [confirmClearHistory, dispatch]);
+
+  useEffect(() => {
+    return () => {
+      showMessage.dismiss();
+    };
+  }, []);
+
   function handleSortTasks({ field }: Pick<SortTasksOptions, 'field'>) {
     const newDirection = sortTaskOptions.direction === 'desc' ? 'asc' : 'desc';
 
@@ -54,9 +70,10 @@ export function History() {
   }
 
   function handleResetHistory() {
-    if (!confirm('Tem Certeza?')) return;
-
-    dispatch({ type: TaskActionTypes.RESET_STATE });
+    showMessage.dismiss();
+    showMessage.confirm('Excluir Histórico?', confirmation => {
+      setConfirmClearHistory(confirmation);
+    });
   }
 
   return (
@@ -65,15 +82,16 @@ export function History() {
         <Heading>
           <span>History</span>
           {hasTasks && (
-          <span className={styles.buttonContainer}>
-            <DefaultButton
-              onClick={() => handleResetHistory()}
-              icon={<TrashIcon />}
-              color='red'
-              aria-label='Apagar todo o histórico'
-              title='Apagar histórico'
-            />
-          </span>)}
+            <span className={styles.buttonContainer}>
+              <DefaultButton
+                onClick={() => handleResetHistory()}
+                icon={<TrashIcon />}
+                color='red'
+                aria-label='Apagar todo o histórico'
+                title='Apagar histórico'
+              />
+            </span>
+          )}
         </Heading>
       </Container>
 
