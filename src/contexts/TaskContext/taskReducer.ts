@@ -49,7 +49,7 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel): Tas
             }
         }
         case TaskActionTypes.RESET_STATE: {
-            return {...initialTaskState}
+            return { ...initialTaskState }
         }
         case TaskActionTypes.COUNT_DOWN: {
             return {
@@ -58,6 +58,10 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel): Tas
                 formattedSecondsRemaining: formatSecondsToMinutes(action.payload.secondsRemaining)
             }
         }
+        case TaskActionTypes.CHANGE_SETTINGS: {
+            return { ...state, config: {...action.payload} }
+        }
+
     }
 
     //? Sempre deve retornar o estado

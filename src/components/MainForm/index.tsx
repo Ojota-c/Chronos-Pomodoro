@@ -14,7 +14,7 @@ import { showMessage } from '../../adapters/showMessage';
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
-  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '' ;
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
 
   //* Ciclos
   const nextCycle = getNextCycle(state.currentCycle);
@@ -22,7 +22,7 @@ export function MainForm() {
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    showMessage.dismiss()
+    showMessage.dismiss();
 
     if (taskNameInput.current === null) return;
 
@@ -50,7 +50,7 @@ export function MainForm() {
 
   function handleInterruptTask() {
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
-    showMessage.dismiss()
+    showMessage.dismiss();
     showMessage.error('Tarefa interrompida ');
   }
 
@@ -58,7 +58,7 @@ export function MainForm() {
     <form onSubmit={handleCreateNewTask} className='form' action=''>
       <div className='formRow'>
         <DefaultInput
-          labelText='task'
+          labelText='Nome da Tarefa'
           id='meuInput'
           type='text'
           placeholder='Digite sua tarefa'
